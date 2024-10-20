@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/config/dimensions/app_dimensions.dart';
+import 'package:portfolio/main_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-void main() {
+void main() async {
+  await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
 }
 
@@ -10,19 +14,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) => ResponsiveBreakpoints.builder(breakpoints: [
-        const Breakpoint(start: 0, end: 800, name: MOBILE),
-        const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-        const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
-      ], child: child!),
-      title: 'Flutter Demo2222',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ScreenUtilInit(
+      designSize: AppDimensions.designSize,
+      child: MaterialApp(
+        builder: (context, child) =>
+            ResponsiveBreakpoints.builder(breakpoints: [
+          const Breakpoint(start: 0, end: 800, name: MOBILE),
+          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+        ], child: child!),
+        title: 'Flutter Demo2222',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: MainPage(),
+        initialRoute: '/',
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      initialRoute: '/',
     );
   }
 }
@@ -55,9 +63,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
+            ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+                ? const Text(
+                    'You have pushed the button this many times:',
+                  )
+                : const Text(
+                    'You have pushed the button this many times:2222222222222222',
+                  ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,

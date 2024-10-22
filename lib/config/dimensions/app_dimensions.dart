@@ -92,6 +92,10 @@ class AppDimensions {
     return h(26);
   }
 
+  static double get getFonTSize28 {
+    return h(28);
+  }
+
   static double get getFonTSize30 {
     return h(30);
   }

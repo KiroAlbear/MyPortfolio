@@ -17,8 +17,15 @@ class CustomTextStyles {
 
   static TextStyle bold_20_white(BuildContext context) {
     return TextStyleBlueprint.style(context,
-        fontSize: AppDimensions.getFonTSize20,
+        fontSize: AppDimensions.getFonTSize28,
         fontWeight: TextStyleBlueprint.boldFontWeight,
+        color: StaticColors.white)!;
+  }
+
+  static TextStyle regular_20_white(BuildContext context) {
+    return TextStyleBlueprint.style(context,
+        fontSize: AppDimensions.getFonTSize24,
+        fontWeight: TextStyleBlueprint.regularFontWeight,
         color: StaticColors.white)!;
   }
 }

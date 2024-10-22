@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/UI/main_page/main_page.dart';
 import 'package:portfolio/config/dimensions/app_dimensions.dart';
-import 'package:portfolio/main_page.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
-  runApp(const MyApp());
+  await Future.delayed(const Duration(milliseconds: 500));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +30,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: MainPage(),
-        initialRoute: '/',
       ),
     );
   }

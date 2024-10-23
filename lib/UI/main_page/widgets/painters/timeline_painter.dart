@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-class MyPainter extends CustomPainter {
-  final double lineLength = 160;
-  final double lineSpacing = 7;
+class TimeLinePainter extends CustomPainter {
+  static double lineLength = 300;
+  final double indicatorSize = 7;
+  final bool drawLine;
+  TimeLinePainter({this.drawLine = true});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -12,17 +14,15 @@ class MyPainter extends CustomPainter {
 
     double centerWidth = size.width / 2;
 
-    var start = Offset(centerWidth - lineLength, 0);
-    var start2 = Offset(centerWidth - lineLength, lineSpacing);
-    var end = Offset(centerWidth + lineLength, 0);
-    var end2 = Offset(centerWidth + lineLength, lineSpacing);
+    var start = Offset(centerWidth, 0);
+    var end = Offset(centerWidth, lineLength);
     canvas.drawLine(start, end, paint);
-    canvas.drawLine(start2, end2, paint);
+    canvas.drawCircle(Offset(centerWidth, 0), indicatorSize, paint);
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     // Return true if this instance represents different information
-    return false;
+    return true;
   }
 }

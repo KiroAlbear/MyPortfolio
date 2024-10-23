@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/UI/main_page/widgets/painters/timeline_painter.dart';
 import 'package:portfolio/UI/main_page/widgets/time_line/timeline_item.dart';
 import 'package:portfolio/config/dimensions/app_dimensions.dart';
 import 'package:portfolio/config/extensions/extensions.dart';
 import 'package:portfolio/config/font/custom_text_styles.dart';
 import 'package:portfolio/gen/assets.gen.dart';
-import 'package:timelines_plus/timelines_plus.dart';
 
 import 'widgets/time_line/timeline_header.dart';
 
@@ -115,37 +115,43 @@ class MainPage extends StatelessWidget {
   }
 
   Widget _buildTimeLine(BuildContext context) {
+    const double height = 3000.0;
     return Container(
-      height: 1000,
+      height: height,
       color: Colors.black,
       child: Column(
         children: [
           TimelineHeader(),
-          70.ph,
           SizedBox(
-            height: 700,
-            child: FixedTimeline.tileBuilder(
-              theme: TimelineTheme.of(context).copyWith(
-                connectorTheme: ConnectorThemeData(
-                    color: Colors.white, thickness: 1, space: 30),
-                indicatorTheme: IndicatorThemeData(color: Colors.white),
-              ),
-              builder: TimelineTileBuilder.connectedFromStyle(
-                firstConnectorStyle: ConnectorStyle.transparent,
-                lastConnectorStyle: ConnectorStyle.transparent,
-                connectorStyleBuilder: (context, index) =>
-                    ConnectorStyle.solidLine,
-                indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
-                contentsAlign: ContentsAlign.alternating,
-                itemExtentBuilder: (context, index) => 100,
-                contentsBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30.0),
-                  child: TimeLineItem(),
-                ),
-                itemCount: 3,
-              ),
-            ),
+            height: 100,
           ),
+          Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CustomPaint(
+                    painter: TimeLinePainter(),
+                  ),
+                  SizedBox(
+                    height: TimeLinePainter.lineLength,
+                  ),
+                  CustomPaint(
+                    painter: TimeLinePainter(),
+                  ),
+                  SizedBox(
+                    height: TimeLinePainter.lineLength,
+                  ),
+                  CustomPaint(
+                    painter: TimeLinePainter(),
+                  ),
+                ],
+              ),
+              Column(
+                children: [TimeLineItem()],
+              )
+            ],
+          )
         ],
       ),
     );

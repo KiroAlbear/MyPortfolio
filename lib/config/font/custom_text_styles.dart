@@ -22,10 +22,31 @@ class CustomTextStyles {
         color: StaticColors.white)!;
   }
 
+  static TextStyle bold_40_white(BuildContext context) {
+    return TextStyleBlueprint.style(context,
+        fontSize: AppDimensions.getFonTSize40,
+        fontWeight: TextStyleBlueprint.boldFontWeight,
+        color: StaticColors.white)!;
+  }
+
   static TextStyle regular_20_white(BuildContext context) {
     return TextStyleBlueprint.style(context,
         fontSize: AppDimensions.getFonTSize24,
         fontWeight: TextStyleBlueprint.regularFontWeight,
         color: StaticColors.white)!;
+  }
+
+  static TextStyle regular_18_white(BuildContext context) {
+    return TextStyleBlueprint.style(context,
+        fontSize: AppDimensions.getFonTSize18,
+        fontWeight: TextStyleBlueprint.regularFontWeight,
+        color: StaticColors.white)!;
+  }
+
+  static TextStyle regular_18_black(BuildContext context) {
+    return TextStyleBlueprint.style(context,
+        fontSize: AppDimensions.getFonTSize18,
+        fontWeight: TextStyleBlueprint.regularFontWeight,
+        color: StaticColors.black)!;
   }
 }

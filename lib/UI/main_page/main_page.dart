@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/UI/main_page/models/project_model.dart';
 import 'package:portfolio/UI/main_page/widgets/painters/timeline_painter.dart';
 import 'package:portfolio/UI/main_page/widgets/project_card_item.dart';
+import 'package:portfolio/UI/main_page/widgets/time_line/timeline_header.dart';
 import 'package:portfolio/UI/main_page/widgets/time_line/timeline_item.dart';
 import 'package:portfolio/config/dimensions/app_dimensions.dart';
 import 'package:portfolio/config/extensions/extensions.dart';
@@ -10,16 +11,14 @@ import 'package:portfolio/core/constants.dart';
 import 'package:portfolio/gen/assets.gen.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import 'widgets/time_line/timeline_header.dart';
-
 class MainPage extends StatelessWidget {
   MainPage({super.key});
 
   final double profileImageRadious = 100;
   final double profileImageSize = 200;
   final double blurredImageHeight = 700;
-  final double projectContainerHeight = 3000;
-  final Color projectContainerColor = Colors.black;
+  // final double projectContainerHeight = 3000;
+  // final Color projectContainerColor = Colors.black;
 
   final List<ProjectModel> projects = [
     ProjectModel(
@@ -46,21 +45,26 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.black,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildPageTop(context),
-            ResponsiveBreakpoints.of(context).largerThan(MOBILE)
-                ? _buildTimeLine(context)
-                : _buildProjectCardItems()
-          ],
+        child: Container(
+          // color: Colors.black,
+          child: Column(
+            children: [
+              _buildPageTop(context),
+              TimelineHeader(),
+              ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+                  ? _buildTimeLine(context)
+                  : _buildProjectCardItems()
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildPageTop(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: blurredImageHeight,
       child: Stack(
         fit: StackFit.expand,
@@ -74,8 +78,7 @@ class MainPage extends StatelessWidget {
             padding: EdgeInsets.only(top: AppDimensions.h(200)),
             child: Column(
               children: [
-                Center(
-                    child: Container(
+                Container(
                   width: profileImageSize,
                   height: profileImageSize,
                   decoration: BoxDecoration(
@@ -91,7 +94,7 @@ class MainPage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                )),
+                ),
                 40.ph,
                 Text(
                   "KIROLOS FOUAD",
@@ -122,21 +125,16 @@ class MainPage extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Transform.translate(
-              offset: Offset(0, 250),
-              child: Container(
-                height: 500,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  colors: [Colors.transparent, Colors.black],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                )),
-              ),
+          Transform.translate(
+            offset: Offset(0, 250),
+            child: Container(
+              height: 500,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [Colors.transparent, Colors.black],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
             ),
           )
         ],
@@ -146,18 +144,21 @@ class MainPage extends StatelessWidget {
 
   Widget _buildProjectCardItems() {
     return Container(
-      height: projectContainerHeight,
-      color: projectContainerColor,
+      // height: projectContainerHeight,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 80.0),
+        padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 30),
         child: Column(
           children: [
             ...projects
-                .map((e) => ProjectCartItem(
-                      title: e.title,
-                      description: e.description,
-                      image: e.image,
-                      route: e.route,
+                .map((e) => Padding(
+                      padding:
+                          const EdgeInsets.only(top: 80.0, left: 70, right: 70),
+                      child: ProjectCartItem(
+                        title: e.title,
+                        description: e.description,
+                        image: e.image,
+                        route: e.route,
+                      ),
                     ))
                 .toList()
           ],
@@ -168,11 +169,9 @@ class MainPage extends StatelessWidget {
 
   Widget _buildTimeLine(BuildContext context) {
     return Container(
-      height: projectContainerHeight,
-      color: projectContainerColor,
+      // height: projectContainerHeight,
       child: Column(
         children: [
-          TimelineHeader(),
           SizedBox(
             height: 100,
           ),

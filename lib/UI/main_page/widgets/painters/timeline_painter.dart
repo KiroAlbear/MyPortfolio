@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TimeLinePainter extends CustomPainter {
-  static double lineLength = 300;
+  static double lineLength = 400;
   final double indicatorSize = 7;
   final bool drawLine;
   TimeLinePainter({this.drawLine = true});
@@ -16,7 +16,12 @@ class TimeLinePainter extends CustomPainter {
 
     var start = Offset(centerWidth, 0);
     var end = Offset(centerWidth, lineLength);
-    canvas.drawLine(start, end, paint);
+    if (drawLine) {
+      canvas.drawLine(start, end, paint);
+    }
+
+    // canvas.drawLine(Offset(centerWidth - lineLength, 0),
+    //     Offset(centerWidth + lineLength, 0), paint);
     canvas.drawCircle(Offset(centerWidth, 0), indicatorSize, paint);
   }
 

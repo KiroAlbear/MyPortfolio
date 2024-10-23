@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         builder: (context, child) =>
             ResponsiveBreakpoints.builder(breakpoints: [
-          const Breakpoint(start: 0, end: 800, name: MOBILE),
-          const Breakpoint(start: 801, end: 1920, name: DESKTOP),
-          const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+          const Breakpoint(start: 0, end: 1000, name: MOBILE),
+          // const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+          // const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ], child: child!),
         title: 'Flutter Demo2222',
         theme: ThemeData(

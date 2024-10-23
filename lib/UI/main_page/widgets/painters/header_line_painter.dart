@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HeaderLinePainter extends CustomPainter {
-  final double lineLength = 160;
+  final double lineLength = 180;
   final double lineSpacing = 7;
 
   @override

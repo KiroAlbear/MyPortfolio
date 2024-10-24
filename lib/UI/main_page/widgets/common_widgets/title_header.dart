@@ -3,9 +3,10 @@ import 'package:portfolio/UI/main_page/widgets/painters/header_line_painter.dart
 import 'package:portfolio/config/dimensions/app_dimensions.dart';
 import 'package:portfolio/config/font/custom_text_styles.dart';
 
-class TimelineHeader extends StatelessWidget {
-  const TimelineHeader({super.key});
+class TitleHeader extends StatelessWidget {
+  final String titleHeader;
   final double titleHeight = 30;
+  const TitleHeader({required this.titleHeader});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class TimelineHeader extends StatelessWidget {
           height: titleHeight,
         ),
         Text(
-          "MY CONTRIBUTIONS",
+          titleHeader,
           style: CustomTextStyles.bold_20_white(context).copyWith(
             letterSpacing: 2.2,
           ),

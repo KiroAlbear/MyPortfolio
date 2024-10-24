@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/UI/main_page/widgets/common_widgets/more_button.dart';
 import 'package:portfolio/UI/main_page/widgets/common_widgets/project_header_description.dart';
+import 'package:portfolio/UI/main_page/widgets/common_widgets/social_icon.dart';
 import 'package:portfolio/config/extensions/extensions.dart';
-import 'package:portfolio/config/font/custom_text_styles.dart';
+import 'package:portfolio/gen/assets.gen.dart';
 
 class TimeLineItem extends StatelessWidget {
   final double horizontalPadding = 30;
@@ -11,12 +13,16 @@ class TimeLineItem extends StatelessWidget {
   final String image;
   final isReversed;
   final String? route;
+  final String? googlePlayLink;
+  final String? appStoreLink;
   const TimeLineItem(
       {this.isReversed = false,
       this.route,
       required this.title,
       required this.description,
-      required this.image});
+      required this.image,
+      this.googlePlayLink,
+      this.appStoreLink});
 
   @override
   Widget build(BuildContext context) {
@@ -50,17 +56,39 @@ class TimeLineItem extends StatelessWidget {
                       ProjectHeaderDescription(
                           title: title, description: description),
                       20.ph,
-                      route == null
-                          ? SizedBox()
-                          : ElevatedButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, route!);
-                              },
-                              child: Text(
-                                "View Project",
-                                style:
-                                    CustomTextStyles.regular_18_black(context),
-                              ))
+                      Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            googlePlayLink == null
+                                ? SizedBox()
+                                : SocialIcon(
+                                    image: Assets.icons.icGooglePlay,
+                                    iconSize: 30,
+                                  ),
+                            googlePlayLink == null
+                                ? SizedBox()
+                                : SizedBox(
+                                    width: 10,
+                                  ),
+                            appStoreLink == null
+                                ? SizedBox()
+                                : SocialIcon(
+                                    image: Assets.icons.icAppstore,
+                                    iconSize: 30,
+                                  ),
+                            appStoreLink == null
+                                ? SizedBox()
+                                : SizedBox(
+                                    width: 10,
+                                  ),
+                            route == null
+                                ? SizedBox()
+                                : MoreButton(route: route!),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

@@ -2,18 +2,26 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:portfolio/UI/main_page/widgets/common_widgets/more_button.dart';
 import 'package:portfolio/UI/main_page/widgets/common_widgets/project_header_description.dart';
+import 'package:portfolio/gen/assets.gen.dart';
 
-class ProjectCartItem extends StatelessWidget {
+import 'common_widgets/social_icon.dart';
+
+class ProjectCardItem extends StatelessWidget {
   final double horizontalPadding = 30;
   final String title;
   final String description;
   final String image;
   final String? route;
-  ProjectCartItem({
+  final String? googlePlayLink;
+  final String? appStoreLink;
+  ProjectCardItem({
     required this.title,
     required this.description,
     required this.image,
+    this.googlePlayLink,
+    this.appStoreLink,
     this.route,
   });
 
@@ -54,7 +62,7 @@ class ProjectCartItem extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(25)),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
-                child: buildMainWidget(),
+                child: buildMainWidget(context),
               ),
             ),
           )
@@ -63,15 +71,60 @@ class ProjectCartItem extends StatelessWidget {
     );
   }
 
-  Column buildMainWidget() {
+  Column buildMainWidget(BuildContext context) {
     return Column(
       children: [
-        SizedBox(width: 100, height: 250, child: SvgPicture.asset(image)),
+        SizedBox(width: 100, height: 200, child: SvgPicture.asset(image)),
         Padding(
-          padding: EdgeInsets.only(left: 30.0, right: 30, top: 0, bottom: 50),
+          padding: EdgeInsets.only(
+            left: 30.0,
+            right: 30,
+            top: 0,
+          ),
           child:
               ProjectHeaderDescription(title: title, description: description),
-        )
+        ),
+        // top padding for social icons
+        (googlePlayLink == null && appStoreLink == null)
+            ? SizedBox()
+            : SizedBox(
+                height: 20,
+              ),
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                googlePlayLink == null
+                    ? SizedBox()
+                    : SocialIcon(
+                        image: Assets.icons.icGooglePlay,
+                        iconSize: 30,
+                      ),
+                appStoreLink == null
+                    ? SizedBox()
+                    : SizedBox(
+                        width: 10,
+                      ),
+                appStoreLink == null
+                    ? SizedBox()
+                    : SocialIcon(
+                        image: Assets.icons.icAppstore,
+                        iconSize: 30,
+                      ),
+              ],
+            ),
+            route == null
+                ? SizedBox()
+                : SizedBox(
+                    height: 20,
+                  ),
+            route == null ? SizedBox() : MoreButton(route: route!),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
   }

@@ -6,7 +6,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
-  await Future.delayed(const Duration(milliseconds: 500));
+  await Future.delayed(const Duration(milliseconds: 1000));
   runApp(MyApp());
 }
 
@@ -20,68 +20,18 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         builder: (context, child) =>
             ResponsiveBreakpoints.builder(breakpoints: [
-          const Breakpoint(start: 0, end: 1000, name: MOBILE),
+          const Breakpoint(start: 0, end: 600, name: MOBILE),
+          const Breakpoint(start: 601, end: 1000, name: TABLET),
           // const Breakpoint(start: 801, end: 1920, name: DESKTOP),
           // const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ], child: child!),
-        title: 'Flutter Demo2222',
+        title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
         home: MainPage(),
       ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ResponsiveBreakpoints.of(context).largerThan(MOBILE)
-                ? const Text(
-                    'You have pushed the button this many times:',
-                  )
-                : const Text(
-                    'You have pushed the button this many times:2222222222222222',
-                  ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

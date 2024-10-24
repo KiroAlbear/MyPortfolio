@@ -9,6 +9,32 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/ic_appstore.svg
+  String get icAppstore => 'assets/icons/ic_appstore.svg';
+
+  /// File path: assets/icons/ic_email.svg
+  String get icEmail => 'assets/icons/ic_email.svg';
+
+  /// File path: assets/icons/ic_github.svg
+  String get icGithub => 'assets/icons/ic_github.svg';
+
+  /// File path: assets/icons/ic_google_play.svg
+  String get icGooglePlay => 'assets/icons/ic_google_play.svg';
+
+  /// File path: assets/icons/ic_linkedin.svg
+  String get icLinkedin => 'assets/icons/ic_linkedin.svg';
+
+  /// File path: assets/icons/ic_phone.svg
+  String get icPhone => 'assets/icons/ic_phone.svg';
+
+  /// List of all assets
+  List<String> get values =>
+      [icAppstore, icEmail, icGithub, icGooglePlay, icLinkedin, icPhone];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
@@ -206,6 +232,7 @@ class $AssetsVideosPoeGen {
 class Assets {
   Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsVideosGen videos = $AssetsVideosGen();
 }

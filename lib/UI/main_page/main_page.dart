@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/UI/main_page/models/project_model.dart';
+import 'package:portfolio/UI/main_page/widgets/common_widgets/social_icon.dart';
+import 'package:portfolio/UI/main_page/widgets/common_widgets/title_header.dart';
 import 'package:portfolio/UI/main_page/widgets/painters/timeline_painter.dart';
 import 'package:portfolio/UI/main_page/widgets/project_card_item.dart';
-import 'package:portfolio/UI/main_page/widgets/time_line/timeline_header.dart';
 import 'package:portfolio/UI/main_page/widgets/time_line/timeline_item.dart';
 import 'package:portfolio/config/dimensions/app_dimensions.dart';
 import 'package:portfolio/config/extensions/extensions.dart';
@@ -26,6 +27,8 @@ class MainPage extends StatelessWidget {
       description: Constants.poeDescription,
       image: Assets.images.poe.poe,
       route: "examplePage",
+      googlePlayLink: "sdf",
+      appstorePlayLink: "sdf",
     ),
     ProjectModel(
       title: Constants.egyptPostTitle,
@@ -52,10 +55,54 @@ class MainPage extends StatelessWidget {
           child: Column(
             children: [
               _buildPageTop(context),
-              TimelineHeader(),
-              ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+              TitleHeader(
+                titleHeader: "MY CONTRIBUTIONS",
+              ),
+              ResponsiveBreakpoints.of(context).largerThan(TABLET)
                   ? _buildTimeLine(context)
-                  : _buildProjectCardItems()
+                  : _buildProjectCardItems(context),
+              SizedBox(
+                height: 150,
+              ),
+              TitleHeader(
+                titleHeader: "MY IFORMATION",
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SocialIcon(
+                        image: Assets.icons.icLinkedin,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SocialIcon(
+                        image: Assets.icons.icGithub,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SocialIcon(
+                        image: Assets.icons.icPhone,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      SocialIcon(
+                        image: Assets.icons.icEmail,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 200,
+              ),
             ],
           ),
         ),
@@ -142,22 +189,29 @@ class MainPage extends StatelessWidget {
     );
   }
 
-  Widget _buildProjectCardItems() {
+  Widget _buildProjectCardItems(BuildContext context) {
     return Container(
       // height: projectContainerHeight,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 80.0, vertical: 30),
+        padding: EdgeInsets.symmetric(
+            horizontal: ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+                ? AppDimensions.w(50)
+                : AppDimensions.w(30),
+            vertical: 30),
         child: Column(
           children: [
             ...projects
                 .map((e) => Padding(
-                      padding:
-                          const EdgeInsets.only(top: 80.0, left: 70, right: 70),
-                      child: ProjectCartItem(
+                      padding: EdgeInsets.only(
+                        top: 80.0,
+                      ),
+                      child: ProjectCardItem(
                         title: e.title,
                         description: e.description,
                         image: e.image,
                         route: e.route,
+                        googlePlayLink: e.googlePlayLink,
+                        appStoreLink: e.appstorePlayLink,
                       ),
                     ))
                 .toList()
@@ -212,6 +266,8 @@ class MainPage extends StatelessWidget {
                             isReversed: e.isReversed,
                             image: e.image,
                             route: e.route,
+                            googlePlayLink: e.googlePlayLink,
+                            appStoreLink: e.appstorePlayLink,
                           ))
                       .toList(),
                   // TimeLineItem(

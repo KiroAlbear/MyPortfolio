@@ -55,22 +55,7 @@ class MainPage extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Expanded(
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-               
-                Gif(image: Assets.gifs.bgBlue.provider(),
-                fit:  BoxFit.fill,
-                autostart: Autostart.loop,
-                ),
-                 Container(
-                  color: Colors.black.withOpacity(0.85),
-              
-            ),
-              ],
-            ),
-          ),
+          _buildGifBackground(),
           SingleChildScrollView(
             child: Container(
               // color: Colors.black,
@@ -132,6 +117,25 @@ class MainPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Expanded _buildGifBackground() {
+    return Expanded(
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+             
+              Gif(image: Assets.gifs.bgBlue.provider(),
+              fit:  BoxFit.fill,
+              autostart: Autostart.loop,
+              ),
+               Container(
+                color: Colors.black.withOpacity(0.85),
+            
+          ),
+            ],
+          ),
+        );
   }
 
   Widget _buildPageTop(BuildContext context) {

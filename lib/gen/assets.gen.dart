@@ -9,6 +9,19 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsGifsGen {
+  const $AssetsGifsGen();
+
+  /// File path: assets/gifs/bg_blue.gif
+  AssetGenImage get bgBlue => const AssetGenImage('assets/gifs/bg_blue.gif');
+
+  /// File path: assets/gifs/bg_green.gif
+  AssetGenImage get bgGreen => const AssetGenImage('assets/gifs/bg_green.gif');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [bgBlue, bgGreen];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -232,6 +245,7 @@ class $AssetsVideosPoeGen {
 class Assets {
   Assets._();
 
+  static const $AssetsGifsGen gifs = $AssetsGifsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsVideosGen videos = $AssetsVideosGen();

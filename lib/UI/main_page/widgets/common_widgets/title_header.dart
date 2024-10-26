@@ -10,10 +10,16 @@ class TitleHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final lineLength = ResponsiveBreakpoints.of(context).largerThan(MOBILE)
+    //     ? AppDimensions.fw() * 0.38
+    //     : AppDimensions.fw() * 0.3;
+
+    final lineLength = AppDimensions.fw() * 0.38;
+
     return Column(
       children: [
         CustomPaint(
-          painter: HeaderLinePainter(),
+          painter: HeaderLinePainter(lineLength: lineLength),
           size: Size(AppDimensions.fw(), 0),
         ),
         SizedBox(
@@ -29,7 +35,7 @@ class TitleHeader extends StatelessWidget {
           height: titleHeight - 10,
         ),
         CustomPaint(
-          painter: HeaderLinePainter(),
+          painter: HeaderLinePainter(lineLength: lineLength),
           size: Size(AppDimensions.fw(), 0),
         ),
       ],

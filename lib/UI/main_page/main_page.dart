@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gif/gif.dart';
 import 'package:portfolio/UI/main_page/models/project_model.dart';
 import 'package:portfolio/UI/main_page/widgets/common_widgets/social_icon.dart';
 import 'package:portfolio/UI/main_page/widgets/common_widgets/title_header.dart';
@@ -35,6 +36,8 @@ class MainPage extends StatelessWidget {
       description: Constants.egyptPostDescription,
       image: Assets.images.egypost.egyptPost,
       isReversed: true,
+      googlePlayLink: Constants.egyptPostGooglePlayLink,
+      appstorePlayLink: Constants.egyptPostAppstoreLink,
       route: "examplePage",
     ),
     ProjectModel(
@@ -49,63 +52,84 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: Colors.black,
-      child: SingleChildScrollView(
-        child: Container(
-          // color: Colors.black,
-          child: Column(
-            children: [
-              _buildPageTop(context),
-              TitleHeader(
-                titleHeader: "MY CONTRIBUTIONS",
-              ),
-              ResponsiveBreakpoints.of(context).largerThan(TABLET)
-                  ? _buildTimeLine(context)
-                  : _buildProjectCardItems(context),
-              SizedBox(
-                height: 150,
-              ),
-              TitleHeader(
-                titleHeader: "MY IFORMATION",
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Column(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Expanded(
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+               
+                Gif(image: Assets.gifs.bgBlue.provider(),
+                fit:  BoxFit.fill,
+                autostart: Autostart.loop,
+                ),
+                 Container(
+                  color: Colors.black.withOpacity(0.85),
+              
+            ),
+              ],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Container(
+              // color: Colors.black,
+              child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  _buildPageTop(context),
+                  TitleHeader(
+                    titleHeader: "MY CONTRIBUTIONS",
+                  ),
+                  ResponsiveBreakpoints.of(context).largerThan(TABLET)
+                      ? _buildTimeLine(context)
+                      : _buildProjectCardItems(context),
+                  SizedBox(
+                    height: 150,
+                  ),
+                  TitleHeader(
+                    titleHeader: "MY IFORMATION",
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Column(
                     children: [
-                      SocialIcon(
-                        image: Assets.icons.icLinkedin,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      SocialIcon(
-                        image: Assets.icons.icGithub,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      SocialIcon(
-                        image: Assets.icons.icPhone,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      SocialIcon(
-                        image: Assets.icons.icEmail,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SocialIcon(
+                            image: Assets.icons.icLinkedin,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          SocialIcon(
+                            image: Assets.icons.icGithub,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          SocialIcon(
+                            image: Assets.icons.icPhone,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          SocialIcon(
+                            image: Assets.icons.icEmail,
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 200,
+                  ),
                 ],
               ),
-              SizedBox(
-                height: 200,
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -116,11 +140,12 @@ class MainPage extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Image.asset(
-            Assets.images.backgrounds.header.path,
-            // Assets.images.profile.path,
-            fit: BoxFit.cover,
-          ),
+          
+          // Image.asset(
+          //   Assets.images.backgrounds.header.path,
+          //   // Assets.images.profile.path,
+          //   fit: BoxFit.cover,
+          // ),
           Padding(
             padding: EdgeInsets.only(top: AppDimensions.h(200)),
             child: Column(
@@ -172,18 +197,18 @@ class MainPage extends StatelessWidget {
               ],
             ),
           ),
-          Transform.translate(
-            offset: Offset(0, 250),
-            child: Container(
-              height: 500,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                colors: [Colors.transparent, Colors.black],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              )),
-            ),
-          )
+          // Transform.translate(
+          //   offset: Offset(0, 250),
+          //   child: Container(
+          //     height: 500,
+          //     decoration: BoxDecoration(
+          //         gradient: LinearGradient(
+          //       colors: [Colors.transparent, Colors.black],
+          //       begin: Alignment.topCenter,
+          //       end: Alignment.bottomCenter,
+          //     )),
+          //   ),
+          // )
         ],
       ),
     );
@@ -214,7 +239,6 @@ class MainPage extends StatelessWidget {
                         appStoreLink: e.appstorePlayLink,
                       ),
                     ))
-                .toList()
           ],
         ),
       ),
@@ -268,8 +292,7 @@ class MainPage extends StatelessWidget {
                             route: e.route,
                             googlePlayLink: e.googlePlayLink,
                             appStoreLink: e.appstorePlayLink,
-                          ))
-                      .toList(),
+                          )),
                   // TimeLineItem(
                   //   title: Constants.poeTitle,
                   //   description: Constants.poeDescription,

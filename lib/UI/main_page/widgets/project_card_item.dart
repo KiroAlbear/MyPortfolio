@@ -123,7 +123,7 @@ class ProjectCardItem extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 20,
+          height: 30,
         ),
       ],
     );

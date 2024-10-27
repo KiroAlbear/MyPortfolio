@@ -35,33 +35,14 @@ class ProjectCardItem extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(25))),
       child: Stack(
         children: [
-          Positioned(
-              top: 5,
-              bottom: 5,
-              left: 10,
-              child: Container(
-                width: 10,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Colors.white,
-                ),
-              )),
-          Positioned(
-              top: 5,
-              bottom: 5,
-              right: 10,
-              child: Container(
-                width: 10,
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: Colors.white,
-                ),
-              )),
+          _buildCardLight(true),
+          // _buildCardLight(false),
+      
           Center(
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(25)),
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                 child: buildMainWidget(context),
               ),
             ),
@@ -69,6 +50,31 @@ class ProjectCardItem extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Positioned _buildCardLight(bool isRight) {
+    const double verticalPadding = 10;
+    const double horizontalPadding = 5;
+    return Positioned(
+            top: verticalPadding,
+            bottom: verticalPadding,
+            left: isRight?null:horizontalPadding,
+            right: isRight? horizontalPadding : null,
+            child: Container(
+              width: 500,
+              // height: 200 ,
+              // height: 400,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+              colors: [ 
+                Colors.white.withOpacity(0.15),
+              // const Color.fromARGB(255, 4, 67, 119).withOpacity(0.4),
+              Colors.transparent,],
+              // transform: GradientRotation(1.5),
+              begin:isRight? Alignment.centerRight: Alignment.centerLeft,
+              end: isRight?Alignment.centerLeft: Alignment.centerRight,
+            )),
+            ));
   }
 
   Column buildMainWidget(BuildContext context) {

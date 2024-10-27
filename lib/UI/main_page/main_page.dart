@@ -55,7 +55,7 @@ class MainPage extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          _buildGifBackground(),
+          _buildGifBackground(context),
           SingleChildScrollView(
             child: Container(
               // color: Colors.black,
@@ -119,14 +119,14 @@ class MainPage extends StatelessWidget {
     );
   }
 
-  Expanded _buildGifBackground() {
+  Expanded _buildGifBackground(BuildContext context) {
     return Expanded(
           child: Stack(
             fit: StackFit.expand,
             children: [
              
               Gif(image: Assets.gifs.bgBlue.provider(),
-              fit:  BoxFit.fill,
+              fit:ResponsiveBreakpoints.of(context).largerThan(TABLET)?BoxFit.fill:BoxFit.cover,
               autostart: Autostart.loop,
               ),
                Container(

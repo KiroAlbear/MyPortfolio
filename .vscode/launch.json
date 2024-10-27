@@ -6,7 +6,7 @@
     "configurations": [
 
         {
-            "name": "portfolio",
+            "name": "portfolio (Browser)",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",
@@ -24,7 +24,7 @@
             "name": "portfolio (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main.dart",
         },
         {
             "name": "portfolio (release mode)",

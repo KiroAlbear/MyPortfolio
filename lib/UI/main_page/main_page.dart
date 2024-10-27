@@ -71,13 +71,26 @@ class MainPage extends StatelessWidget {
                   SizedBox(
                     height: 150,
                   ),
-                  TitleHeader(
-                    titleHeader: "MY IFORMATION",
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Column(
+                  Container(
+                    padding: EdgeInsets.only(top: 50),
+                    // color: Colors.black,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        stops: [0.1, 0.5],
+                        colors: [Colors.transparent, Colors.black],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        TitleHeader(
+                          titleHeader: "MY IFORMATION",
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -107,9 +120,14 @@ class MainPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                   SizedBox(
                     height: 200,
                   ),
+                      ],
+                    ),
+                  ),
+                  
+                 
                 ],
               ),
             ),
@@ -144,12 +162,12 @@ class MainPage extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          
-          // Image.asset(
-          //   Assets.images.backgrounds.header.path,
-          //   // Assets.images.profile.path,
-          //   fit: BoxFit.cover,
-          // ),
+          Image.asset(
+            Assets.images.backgrounds.header.path,
+            // Assets.images.profile.path,
+            fit: BoxFit.cover,
+          ),
+         
           Padding(
             padding: EdgeInsets.only(top: AppDimensions.h(200)),
             child: Column(
@@ -201,18 +219,22 @@ class MainPage extends StatelessWidget {
               ],
             ),
           ),
-          // Transform.translate(
-          //   offset: Offset(0, 250),
-          //   child: Container(
-          //     height: 500,
-          //     decoration: BoxDecoration(
-          //         gradient: LinearGradient(
-          //       colors: [Colors.transparent, Colors.black],
-          //       begin: Alignment.topCenter,
-          //       end: Alignment.bottomCenter,
-          //     )),
-          //   ),
-          // )
+           Container(
+            color: Colors.black.withOpacity(0.15),
+          ),
+          Transform.translate(
+            offset: Offset(0, 120),
+            child: Container(
+              height: 500,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    stops: [0.5, 0.9,1],
+                colors: [Colors.transparent, Colors.black,Colors.transparent,],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
+            ),
+          )
         ],
       ),
     );

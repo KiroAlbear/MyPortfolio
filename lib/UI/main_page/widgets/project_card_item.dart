@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:portfolio/UI/main_page/widgets/common_widgets/more_button.dart';
 import 'package:portfolio/UI/main_page/widgets/common_widgets/project_header_description.dart';
+import 'package:portfolio/config/dimensions/app_dimensions.dart';
 import 'package:portfolio/gen/assets.gen.dart';
 
 import 'common_widgets/social_icon.dart';
@@ -36,8 +37,9 @@ class ProjectCardItem extends StatelessWidget {
       child: Stack(
         children: [
           _buildCardLight(true),
-          // _buildCardLight(false),
-      
+          _buildCardLight(false),
+
+        
           Center(
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(25)),
@@ -61,7 +63,8 @@ class ProjectCardItem extends StatelessWidget {
             left: isRight?null:horizontalPadding,
             right: isRight? horizontalPadding : null,
             child: Container(
-              width: 500,
+              // width: AppDimensions.w(300),
+              width: 200,
               // height: 200 ,
               // height: 400,
               decoration: BoxDecoration(
